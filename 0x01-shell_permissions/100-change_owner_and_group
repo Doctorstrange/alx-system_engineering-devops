@@ -1,2 +1,2 @@
 #!/bin/bash
- sudo chmod -R vincent {}, chgrp -R staff {}
+ sudo chown -R vincent {}, chgrp -R staff {}
