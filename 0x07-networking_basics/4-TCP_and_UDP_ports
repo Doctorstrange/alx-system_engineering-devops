@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-# Pings an IP address received as an argument 5 times.
+# Displays listening SOCKETS
+# Display PID and program
 
-if [ $# -eq 0 ]
-then
-  echo "PROVIDE IP ADDRESS TO PING"
-else
-  ping -c 5 "$1"
-fi
+netstat -l --program

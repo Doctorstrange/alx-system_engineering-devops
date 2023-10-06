@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Pings an IP address WITH ICMP
+
+if [ $# -eq 0 ]
+then
+  echo "PROVIDE IP ADDRESS TO PING"
+else
+  ping -c 5 "$1"
+fi
