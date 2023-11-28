@@ -14,4 +14,8 @@ server {
 }
 EOF'
 
+sudo mkdir -p /run/nginx
+
+sudo touch /run/nginx/nginx.pid
+
 sudo nginx -s reload
