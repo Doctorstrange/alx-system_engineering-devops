@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Bash script that configures a new Ubuntu machine 
+sudo apt update
+sudo apt install -y nginx
+
+sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80;
+    # other configurations...
+
+    location / {
+        return 200 "Hello World!";
+    }
+}
+EOF'
+
+sudo nginx -s reload
