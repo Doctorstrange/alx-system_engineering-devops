@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
 sudo apt update
-sudo apt install -y nginx
+sudo su apt install -y nginx
 
 sudo su bash -c 'cat <<EOF > /etc/nginx/sites-available/default
 server {
