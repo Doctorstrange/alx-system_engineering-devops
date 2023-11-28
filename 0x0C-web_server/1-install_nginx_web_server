@@ -3,7 +3,7 @@
 sudo apt update
 sudo apt install -y nginx
 
-sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
+sudo su bash -c 'cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80;
     # other configurations...
@@ -14,8 +14,8 @@ server {
 }
 EOF'
 
-sudo mkdir -p /run/nginx
+sudo su mkdir -p /run/nginx
 
-sudo touch /run/nginx/nginx.pid
+sudo su touch /run/nginx/nginx.pid
 
-sudo nginx -s reload
+sudo su nginx -s reload
