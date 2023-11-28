@@ -14,4 +14,4 @@ server {
 }
 EOF'
 
-sudo nginx -s reload
+sudo su nginx -s reload
