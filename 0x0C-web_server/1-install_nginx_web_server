@@ -3,6 +3,10 @@
 sudo apt update
 sudo apt install -y nginx
 
+sudo service nginx start
+
+sudo service nginx stop
+
 sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80;
