@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
 sudo apt update
-sudo su apt install -y nginx
+sudo apt install -y nginx
 
-sudo su bash -c 'cat <<EOF > /etc/nginx/sites-available/default
+sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
 server {
     listen 80;
     # other configurations...
@@ -14,8 +14,8 @@ server {
 }
 EOF'
 
-sudo su mkdir -p /run/nginx
+sudo mkdir -p /run/nginx
 
-sudo su touch /run/nginx/nginx.pid
+sudo touch /run/nginx/nginx.pid
 
-sudo su nginx -s reload
+sudo nginx -s reload
