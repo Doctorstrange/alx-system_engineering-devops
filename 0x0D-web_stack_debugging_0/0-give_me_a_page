@@ -14,3 +14,5 @@ cat <<EOF > index.html
 EOF
 
 COPY index.html /usr/local/apache2/htdocs/
+
+docker exec -it vigilant_tesla systemctl restart apache2
