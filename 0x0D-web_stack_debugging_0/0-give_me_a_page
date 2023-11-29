@@ -13,6 +13,6 @@ cat <<EOF > index.html
 </html>
 EOF
 
-COPY index.html /usr/local/apache2/htdocs/
+COPY index.html /usr/local/apache/htdocs/
 
-docker exec -it vigilant_tesla systemctl restart apache2
+docker exec -it vigilant_tesla systemctl restart apache
