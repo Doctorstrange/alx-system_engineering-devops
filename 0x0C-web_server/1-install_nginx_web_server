@@ -15,5 +15,5 @@ EOF'
 
 sudo ufw allow 'Nginx HTTP'
 
-sudo service nginx start
+sudo service nginx restart
 
