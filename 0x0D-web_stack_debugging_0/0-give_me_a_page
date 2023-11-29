@@ -12,14 +12,3 @@ cat <<EOF > index.html
 </body>
 </html>
 EOF
-
-cat <<EOF > Dockerfile
-FROM holbertonschool/265-0
-RUN apt-get update && apt-get install -y apache2
-COPY index.html /var/www/html/
-EXPOSE 80
-EOF
-
-docker build -t my-custom-image .
-
-docker run -p 8080:80 -d my-custom-image
