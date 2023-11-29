@@ -9,7 +9,7 @@ server {
     server_name your_domain_or_server_ip;
 
     location /redirect_me {
-        return 301 https://example.com/new_page;
+        return 301 https://fixinity.tech/;
     }
 
     # Add other configurations as needed
