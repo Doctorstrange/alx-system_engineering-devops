@@ -13,6 +13,13 @@ cat <<EOF > index.html
 </html>
 EOF
 
-docker cp index.html holbertonschool/265-0:/usr/local/apache2/htdocs/
+cat <<EOF > Dockerfile
+FROM holbertonschool/265-0
+RUN apt-get update && apt-get install -y apache2
+COPY index.html /var/www/html/
+EXPOSE 80
+EOF
 
-docker restart holbertonschool/265-0
+docker build -t my-custom-image .
+
+docker run -p 8080:80 -d my-custom-image
