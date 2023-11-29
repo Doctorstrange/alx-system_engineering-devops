@@ -1,22 +1,4 @@
 #!/usr/bin/env bash
 # fix docker issue 
 
-cat <<EOF > index.html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Hello Holberton</title>
-</head>
-<body>
-  <h1>Hello Holberton</h1>
-</body>
-</html>
-EOF
-
-COPY index.html /usr/local/apache2/htdocs/
-
-docker restart vigilant_tesla
-
-docker exec -it vigilant_tesla systemctl enable apache2
-
-docker exec -it vigilant_tesla systemctl start apache2
+service apache2 start
