@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# script to fix docker
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello Holberton</title>
+</head>
+<body>
+  <h1>Hello Holberton</h1>
+</body>
+</html>
+EOF
+
+docker cp index.html holbertonschool/265-0:/usr/local/apache2/htdocs/
+
+docker restart holbertonschool/265-0
