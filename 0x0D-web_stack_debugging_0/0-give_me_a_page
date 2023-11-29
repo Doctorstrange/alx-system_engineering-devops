@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # script to fix docker
+
 cat <<EOF > index.html
 <!DOCTYPE html>
 <html>
