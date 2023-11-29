@@ -4,17 +4,6 @@ sudo apt update
 sudo apt install -y nginx
 
 sudo ufw allow 'Nginx HTTP'
-sudo echo "Holberton School" > /var/www/html/index.html
-
-sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
-server {
-    listen 80;
-
-    location / {
-        return 200 "Hello World!";
-    }
-}
-EOF'
-
+sudo echo "Hello World!" > /var/www/html/index.html
 sudo service nginx start
 
