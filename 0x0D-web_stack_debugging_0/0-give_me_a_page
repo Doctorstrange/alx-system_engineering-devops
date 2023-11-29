@@ -1,14 +1,3 @@
 #!/usr/bin/env bash
 # script to fix docker
-
-cat <<EOF > index.html
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Hello Holberton</title>
-</head>
-<body>
-  <h1>Hello Holberton</h1>
-</body>
-</html>
-EOF
+ok
