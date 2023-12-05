@@ -37,6 +37,16 @@ EOF
 
 
 cat << 'EOF' | sudo tee /etc/init.d/haproxy
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          haproxy
+# Required-Start:    $network $syslog
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: HAProxy balancer
+# Description:       Makes sure that HAproxy can be managed via an init script
+### END INIT INFO
 
 haproxy -f /etc/haproxy/haproxy.cfg -D -p /var/run/haproxy.pid
 EOF
