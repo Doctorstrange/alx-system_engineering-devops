@@ -3,12 +3,16 @@
 sudo apt update
 sudo apt install -y nginx
 
-sudo ufw allow 'Nginx HTTP'
-echo "Holberton School" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
-sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.github.com permanent;' /etc/nginx/sites-available/default
-sed -i '/listen 80 default_server/a \\terror_page 404 /404.html;' /etc/nginx/sites-available/default
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-sudo service nginx reload
-sudo service nginx start
+str="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Doctorstrange permanent;"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-enabled/default
 
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+str="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+
+sudo sed -i "s/listen 80 default_server;/$str/" /etc/nginx/sites-enabled/default
+
+sudo nginx -t
+
+sudo service nginx restart
