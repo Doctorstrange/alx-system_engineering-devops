@@ -9,6 +9,6 @@ echo "Ceci n'est pas une page" > /var/www/html/404.html
 sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.github.com permanent;' /etc/nginx/sites-available/default
 sed -i '/listen 80 default_server/a \\terror_page 404 /404.html;' /etc/nginx/sites-available/default
 
-sudo nginx -t
+sudo service nginx reload
+sudo service nginx start
 
-sudo service nginx restart
