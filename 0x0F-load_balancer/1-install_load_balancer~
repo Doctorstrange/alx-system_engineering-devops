@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Install HAProxy
+sudo apt-get update
+sudo apt-get install -y haproxy
+
+# Edit HAProxy Configuration
+cat << 'EOF' | sudo tee /etc/haproxy/haproxy.cfg
+global
+    log /dev/log    local0
+    log /dev/log    local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
+
+frontend http_front
+    bind *:80
+    stats uri /haproxy?stats
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server web-01 <web-01-IP>:<port> check
+    server web-02 <web-02-IP>:<port> check
+EOF
+
+# Create HAProxy init script
+cat << 'EOF' | sudo tee /etc/init.d/haproxy
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          haproxy
+# Required-Start:    $network $syslog
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: HAProxy Load Balancer
+# Description:       HAProxy is a TCP/HTTP reverse proxy which is particularly suited for high availability environments.
+### END INIT INFO
+
+haproxy -f /etc/haproxy/haproxy.cfg -D -p /var/run/haproxy.pid
+EOF
+
+# Make init script executable
+sudo chmod +x /etc/init.d/haproxy
+
+# Start HAProxy service
+sudo service haproxy start
+
+# Enable HAProxy to start on boot
+sudo update-rc.d haproxy defaults
