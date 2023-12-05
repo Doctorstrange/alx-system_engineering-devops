@@ -3,25 +3,15 @@
 sudo apt update
 sudo apt install -y nginx
 
-sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-    root /var/www/html;
-    index index.html index.htm;
+str="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-enabled/default
 
-    server_name _;
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+str="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
-    error_page 404 /404.html;
-    location = /404.html {
-        internal;
-    }
-
-    # Other configurations...
-}
-
-EOF'
+sudo sed -i "s/listen 80 default_server;/$str/" /etc/nginx/sites-enabled/default
 
 sudo nginx -t
 
