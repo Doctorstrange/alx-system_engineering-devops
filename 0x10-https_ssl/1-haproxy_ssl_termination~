@@ -41,7 +41,7 @@ frontend strange-frontend
         default_backend strange-backend
 
 frontend strange-frontend-https
-        bind *:443 ssl crt /etc/letsencrypt/live/www.fixinity.tech/fullchain.pem
+        bind *:443 ssl crt /etc/haproxy/certs/akoatem.tech.pem
         http-request set-header X-Forwarded-Proto https
         default_backend strange-backend
 
