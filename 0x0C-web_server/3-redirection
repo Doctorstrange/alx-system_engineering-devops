@@ -6,7 +6,7 @@ sudo apt install -y nginx
 sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/redirect_config
 server {
     listen 80;
-    server_name your_domain_or_server_ip;
+    359213-web-01 54.157.145.222;
 
     location /redirect_me {
         return 301 https://fixinity.tech/;
