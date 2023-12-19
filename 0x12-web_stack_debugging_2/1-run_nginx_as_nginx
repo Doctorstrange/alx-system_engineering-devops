@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Nginx is running as the nginx user
+
+sed -i "s/#user www-data/user nginx" /etc/nginx/nginx.conf
+
+sed -1 "s/80/8080/g" /etc/nginx/sites-available/default
+
+sudo -u nginx service nginx start
