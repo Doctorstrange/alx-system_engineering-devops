@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Accessing todo lists of employees"""
 
+import json
 import requests
 import sys
-import json
 
 if __name__ == '__main__':
     empId = sys.argv[1]
