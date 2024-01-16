@@ -5,7 +5,9 @@ from requests import get
 
 
 def top_ten(subreddit):
-    """ queries the Reddit API and prints the titles of the first 10 hot posts """
+    """ queries the Reddit API and prints the
+    titles of the first 10 hot posts
+    """
 
     if subreddit is None or not isinstance(subreddit, str):
         print("None")
