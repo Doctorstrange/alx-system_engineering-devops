@@ -12,14 +12,14 @@ def top_ten(subreddit):
     if subreddit is None or not isinstance(subreddit, str):
         print("None")
 
-    headers = {'User-Agent': 'CustomUserAgent'}
+    user_agent = {'User-agent': 'Google Chrome Version 120.0.6099.216'}
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
 
-    response = get(url, headers=headers, allow_redirects=False, params={'limit': 10})
-    injson = response.json()
+    response = get(url, headers=user_agent, allow_redirects=False, params={'limit': 10})
+    in_json = response.json()
 
     try:
-        result = injson.get('data').get('children')
+        result = in_json.get('data').get('children')
 
         for obj in result:
             print(obj.get('data').get('title'))
