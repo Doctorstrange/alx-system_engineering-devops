@@ -19,19 +19,13 @@ def top_ten(subreddit):
                    headers=user_agent,
                    params={'limit': 10},
                    allow_redirects=False)
-    response.raise_for_status()
+    in_json = response.json()
 
-    if response.status_code == 200:
-        in_json = response.json()
+    try:
+        result = in_json.get('data').get('children')
 
-        try:
-            result = in_json.get('data').get('children')
+        for obj in result:
+            print(obj.get('data').get('title'))
 
-            for obj in result:
-                print(obj.get('data').get('title'))
-
-        except Exception:
-            print("None")
-
-    else:
-        return []
+    except Exception:
+        print("None")
