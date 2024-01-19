@@ -15,17 +15,19 @@ def top_ten(subreddit):
     user_agent = {'User-agent': 'Google-Chrome'}
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
 
-    response = get(url,
-                   headers=user_agent,
-                   params={'limit': 10},
-                   allow_redirects=False)
-    in_json = response.json()
-
     try:
-        result = in_json.get('data').get('children')
+        response = requests.get(url, headers=user_agent, params={'limit': 10})
+        response.raise_for_status()
 
-        for obj in result:
-            print(obj.get('data').get('title'))
+        if response.status_code == 200:
+            result = response.json().get('data', {}).get('children', [])
 
-    except Exception:
-        print("None")
+            return [obj.get('data', {}).get('title', '') for obj in result]
+        else:
+            print(f"Failed to retrieve data. HTTP status code:
+                  {response.status_code}")
+
+    except requests.RequestException as e:
+        print(f"Error during request: {e}")
+
+    return []
